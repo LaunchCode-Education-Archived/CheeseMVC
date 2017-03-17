@@ -48,7 +48,7 @@ namespace CheeseMVC.Controllers
         {
             foreach (string cheese in cheeses)
             {
-                // TODO 
+                Cheeses.RemoveAll(x => x.Name.Equals(cheese));
             }
 
             return Redirect("/");

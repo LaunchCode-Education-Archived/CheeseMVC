@@ -10,6 +10,8 @@ namespace CheeseMVC.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+        private int CheeseId;
+
         public Cheese(string name, string description)
         {
             Name = name;
