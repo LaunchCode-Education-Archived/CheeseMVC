@@ -6,8 +6,6 @@
 
 <p><a asp-controller="Cheese" asp-action="Add">Add Cheese</a></p>
 
-<p><a asp-controller="Cheese" asp-action="Remove">Remove Cheese</a></p>
-
 @if (ViewBag.cheeses.Count == 0)
 {
     <p>No cheeses yet!</p>
@@ -16,6 +14,6 @@
 <ul>
     @foreach (string cheese in ViewBag.cheeses)
     {
-        <li>@cheese - <a href="/Cheese/Remove">remove</a></li>
+        <li>@cheese</li>
     }
 </ul>
