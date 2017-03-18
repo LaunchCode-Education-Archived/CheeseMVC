@@ -12,11 +12,11 @@
         <th>Description</th>
     </tr>
 
-    @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+    @foreach (var cheese in ViewBag.cheeses)
     {
         <tr>
-            <td>@cheese.Key</td>
-            <td>@cheese.Value</td>
+            <td>@cheese.Name</td>
+            <td>@cheese.Description</td>
         </tr>
     }
 </table>
