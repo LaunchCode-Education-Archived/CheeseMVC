@@ -35,24 +35,5 @@ namespace CheeseMVC.Controllers
 
             return Redirect("/Cheese");
         }
-
-        public IActionResult Remove()
-        {
-            ViewBag.cheeses = Cheeses;
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Remove(string[] cheese)
-        {
-
-            foreach (string aCheese in cheese)
-            {
-                Cheeses.Remove(aCheese);
-            }
-            
-            return Redirect("/Cheese");
-        }
     }
 }
