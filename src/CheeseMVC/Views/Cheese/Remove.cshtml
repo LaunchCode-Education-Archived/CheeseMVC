@@ -3,8 +3,8 @@
 <form method="post">
     @foreach (var cheese in ViewBag.cheeses)
     {
-        <input type="checkbox" name="cheeses" value="@cheese.Name" id="@cheese.Name" />
-        <label for="@cheese.Name">@cheese.Name</label>
+        <input type="checkbox" name="cheeses" value="@cheese.CheeseId" id="@cheese.CheeseId" />
+        <label for="@cheese.CheeseId">@cheese.Name</label>
         <br />
     }
     <input type="submit" value="Remove Selected Cheese" />
