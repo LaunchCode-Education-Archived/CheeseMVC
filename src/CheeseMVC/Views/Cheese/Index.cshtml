@@ -10,13 +10,15 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
+        <th></th>
     </tr>
 
-    @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+    @foreach (var cheese in ViewBag.cheeses)
     {
         <tr>
-            <td>@cheese.Key</td>
-            <td>@cheese.Value</td>
+            <td>@cheese.Name</td>
+            <td>@cheese.Description</td>
+            <td><a asp-controller="Cheese" asp-action="Edit" asp-route-id="@cheese.CheeseId">edit</a></td>
         </tr>
     }
 </table>
