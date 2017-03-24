@@ -15,6 +15,11 @@
         <span asp-validation-for="Description"></span>
     </div>
 
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <select asp-for="Type" asp-items="Model.CheeseTypes"></select>
+    </div>
+
     <input type="submit" value="Add Cheese" />
 
 </form>
