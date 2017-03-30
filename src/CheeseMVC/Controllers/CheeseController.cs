@@ -2,6 +2,7 @@
 using CheeseMVC.Models;
 using System.Collections.Generic;
 using CheeseMVC.ViewModels;
+using System.Collections;
 
 namespace CheeseMVC.Controllers
 {
@@ -11,7 +12,7 @@ namespace CheeseMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Cheese> cheeses = CheeseData.GetAll();
+            IList<Cheese> cheeses = CheeseData.GetSortedByRating();
 
             return View(cheeses);
         }
@@ -28,13 +29,7 @@ namespace CheeseMVC.Controllers
             if (ModelState.IsValid)
             {
                 // Add the new cheese to my existing cheeses
-                Cheese newCheese = new Cheese
-                {
-                    Name = addCheeseViewModel.Name,
-                    Description = addCheeseViewModel.Description,
-                    Type = addCheeseViewModel.Type
-                };
-
+                Cheese newCheese = addCheeseViewModel.CreateCheese();
                 CheeseData.Add(newCheese);
 
                 return Redirect("/Cheese");

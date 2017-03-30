@@ -34,6 +34,11 @@ namespace CheeseMVC.Models
             return cheeses.Single(x => x.CheeseId == id);
         }
 
+        public static IList<Cheese> GetSortedByRating()
+        {
+            cheeses.Sort(new CheeseComparer());
+            return cheeses;
+        }
 
     }
 }

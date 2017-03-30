@@ -17,6 +17,9 @@ namespace CheeseMVC.ViewModels
         [Required(ErrorMessage = "You must give your cheese a description")]
         public string Description { get; set; }
 
+        [Range(1,5,ErrorMessage ="Rating must be between 1 and 5")]
+        public int Rating { get; set; }
+
         public CheeseType Type { get; set; }
 
         public List<SelectListItem> CheeseTypes { get; set; }
@@ -25,24 +28,26 @@ namespace CheeseMVC.ViewModels
 
             CheeseTypes = new List<SelectListItem>();
 
-            // <option value="0">Hard</option>
-            CheeseTypes.Add(new SelectListItem {
-                Value = ((int) CheeseType.Hard).ToString(),
-                Text = CheeseType.Hard.ToString()
-            });
+            var values = Enum.GetValues(typeof(CheeseType));
 
-            CheeseTypes.Add(new SelectListItem
+            foreach (var value in values)
             {
-                Value = ((int)CheeseType.Soft).ToString(),
-                Text = CheeseType.Soft.ToString()
-            });
+                CheeseTypes.Add(new SelectListItem
+                {
+                    Value = ((int)value).ToString(),
+                    Text = value.ToString()
+                });
+            }
+        }
 
-            CheeseTypes.Add(new SelectListItem
-            {
-                Value = ((int)CheeseType.Fake).ToString(),
-                Text = CheeseType.Fake.ToString()
-            });
-
+        public Cheese CreateCheese()
+        {
+            return new Cheese {
+                Name = this.Name,
+                Description = this.Description,
+                Type = this.Type,
+                Rating = this.Rating
+            };
         }
     }
 }
