@@ -4,6 +4,8 @@
 
 <form asp-controller="Cheese" asp-action="Add" method="post">
 
+    <div class="text-danger">@Model.SaveChangesError</div>
+
     <div class="form-group">
         <label asp-for="Name"></label>
         <input class="form-control" asp-for="Name" />

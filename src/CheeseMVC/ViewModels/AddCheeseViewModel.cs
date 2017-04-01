@@ -20,6 +20,8 @@ namespace CheeseMVC.ViewModels
         [Range(1,5,ErrorMessage ="Rating must be between 1 and 5")]
         public int Rating { get; set; }
 
+        public string SaveChangesError { get; set; }
+
         public CheeseType Type { get; set; }
 
         public List<SelectListItem> CheeseTypes { get; set; }
