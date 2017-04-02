@@ -2,7 +2,6 @@
 using CheeseMVC.Models;
 using System.Collections.Generic;
 using CheeseMVC.ViewModels;
-using System.Collections;
 using CheeseMVC.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -22,14 +21,15 @@ namespace CheeseMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            IList<Cheese> cheeses = context.Cheeses.ToList();
+            IList<Cheese> cheeses = context.Cheeses.Include(c => c.Category).ToList();
 
             return View(cheeses);
         }
 
         public IActionResult Add()
         {
-            AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel();
+            AddCheeseViewModel addCheeseViewModel = 
+                new AddCheeseViewModel(context.Categories.ToList());
             return View(addCheeseViewModel);
         }
 
@@ -40,12 +40,20 @@ namespace CheeseMVC.Controllers
             {
                 try
                 {
+                    CheeseCategory newCheeseCategory = 
+                        context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
+
                     // Add the new cheese to my existing cheeses
-                    Cheese newCheese = addCheeseViewModel.CreateCheese();
+                    Cheese newCheese = new Cheese {
+                        Name = addCheeseViewModel.Name,
+                        Description = addCheeseViewModel.Description,
+                        Category = newCheeseCategory,
+                        Rating = addCheeseViewModel.Rating
+                    };
                     context.Cheeses.Add(newCheese);
                     context.SaveChanges();
                 }
-                catch (DbUpdateException ex)
+                catch (DbUpdateException)
                 {
                     addCheeseViewModel.SaveChangesError = "Save failed. Try again.";
                     return View(addCheeseViewModel);
@@ -77,6 +85,27 @@ namespace CheeseMVC.Controllers
             
 
             return Redirect("/");
+        }
+
+        public IActionResult Category(int id)
+        {
+            if (id == 0)
+            {
+                return Redirect("/Category");
+            }
+
+            /*CheeseCategory theCategory = context.Categories
+                .Include(cat => cat.Cheeses)
+                .Single(cat => cat.ID == id);*/
+
+            IList<Cheese> theCheeses = context.Cheeses
+                .Include(c => c.Category)
+                .Where(c => c.CategoryID == id)
+                .ToList();
+
+            //ViewBag.title = "Cheeses in category: " + theCategory.Name;
+
+            return View("Index", theCheeses);
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿using CheeseMVC.Models;
+﻿using CheeseMVC.Data;
+using CheeseMVC.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CheeseMVC.ViewModels
 {
     public class AddCheeseViewModel
     {
+
         [Required]
         [Display(Name = "Cheese Name")]
         public string Name { get; set; }
@@ -22,34 +22,26 @@ namespace CheeseMVC.ViewModels
 
         public string SaveChangesError { get; set; }
 
-        public CheeseType Type { get; set; }
+        [Required]
+        [Display(Name = "Category")]
+        public int CategoryID { get; set; }
 
-        public List<SelectListItem> CheeseTypes { get; set; }
+        public List<SelectListItem> Categories { get; set; }
 
-        public AddCheeseViewModel() {
+        public AddCheeseViewModel() { }
 
-            CheeseTypes = new List<SelectListItem>();
+        public AddCheeseViewModel(IEnumerable<CheeseCategory> categories) {
 
-            var values = Enum.GetValues(typeof(CheeseType));
+            Categories = new List<SelectListItem>();
 
-            foreach (var value in values)
+            foreach (var category in categories)
             {
-                CheeseTypes.Add(new SelectListItem
+                Categories.Add(new SelectListItem
                 {
-                    Value = ((int)value).ToString(),
-                    Text = value.ToString()
+                    Value = (category.ID).ToString(),
+                    Text = category.Name
                 });
             }
-        }
-
-        public Cheese CreateCheese()
-        {
-            return new Cheese {
-                Name = this.Name,
-                Description = this.Description,
-                Type = this.Type,
-                Rating = this.Rating
-            };
         }
     }
 }
