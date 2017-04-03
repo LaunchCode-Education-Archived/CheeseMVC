@@ -38,26 +38,18 @@ namespace CheeseMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    CheeseCategory newCheeseCategory = 
-                        context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
 
-                    // Add the new cheese to my existing cheeses
-                    Cheese newCheese = new Cheese {
-                        Name = addCheeseViewModel.Name,
-                        Description = addCheeseViewModel.Description,
-                        Category = newCheeseCategory,
-                        Rating = addCheeseViewModel.Rating
-                    };
-                    context.Cheeses.Add(newCheese);
-                    context.SaveChanges();
-                }
-                catch (DbUpdateException)
-                {
-                    addCheeseViewModel.SaveChangesError = "Save failed. Try again.";
-                    return View(addCheeseViewModel);
-                }
+                CheeseCategory newCheeseCategory = 
+                    context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
+
+                // Add the new cheese to my existing cheeses
+                Cheese newCheese = new Cheese {
+                    Name = addCheeseViewModel.Name,
+                    Description = addCheeseViewModel.Description,
+                    Category = newCheeseCategory
+                };
+                context.Cheeses.Add(newCheese);
+                context.SaveChanges();
 
                 return Redirect("/Cheese");
             }
@@ -78,12 +70,12 @@ namespace CheeseMVC.Controllers
             
             foreach (int cheeseId in cheeseIds)
             {
-                Cheese toRemove = context.Cheeses.Single(c => c.ID == cheeseId);
-                context.Cheeses.Remove(toRemove);
+                Cheese theCheese = context.Cheeses.Single(c => c.ID == cheeseId);
+                context.Cheeses.Remove(theCheese);
             }
+
             context.SaveChanges();
             
-
             return Redirect("/");
         }
 
@@ -94,18 +86,23 @@ namespace CheeseMVC.Controllers
                 return Redirect("/Category");
             }
 
-            /*CheeseCategory theCategory = context.Categories
+            CheeseCategory theCategory = context.Categories
                 .Include(cat => cat.Cheeses)
-                .Single(cat => cat.ID == id);*/
+                .Single(cat => cat.ID == id);
 
-            IList<Cheese> theCheeses = context.Cheeses
+            // To query for the cheeses from the other 
+            // side of the relationship:
+
+            /*
+             IList<Cheese> theCheeses = context.Cheeses
                 .Include(c => c.Category)
                 .Where(c => c.CategoryID == id)
                 .ToList();
+            */
 
-            //ViewBag.title = "Cheeses in category: " + theCategory.Name;
+            ViewBag.title = "Cheeses in category: " + theCategory.Name;
 
-            return View("Index", theCheeses);
+            return View("Index", theCategory.Cheeses);
         }
     }
 }

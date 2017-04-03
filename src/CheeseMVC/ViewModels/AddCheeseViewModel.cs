@@ -17,9 +17,6 @@ namespace CheeseMVC.ViewModels
         [Required(ErrorMessage = "You must give your cheese a description")]
         public string Description { get; set; }
 
-        [Range(1,5,ErrorMessage ="Rating must be between 1 and 5")]
-        public int Rating { get; set; }
-
         public string SaveChangesError { get; set; }
 
         [Required]

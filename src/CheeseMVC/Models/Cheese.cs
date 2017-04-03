@@ -10,18 +10,5 @@ namespace CheeseMVC.Models
 
         public int CategoryID { get; set; }
         public CheeseCategory Category { get; set; }
-
-        private int rating;
-        public int Rating {
-            get { return rating; }
-            set {
-                if (value < 1 || value > 5)
-                {
-                    throw new ArgumentException("Rating must be between 1 and 5");
-                }
-
-                rating = value;
-            }
-        }
     }
 }
