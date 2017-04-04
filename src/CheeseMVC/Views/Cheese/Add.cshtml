@@ -4,6 +4,8 @@
 
 <form asp-controller="Cheese" asp-action="Add" method="post">
 
+    <div class="text-danger">@Model.SaveChangesError</div>
+
     <div class="form-group">
         <label asp-for="Name"></label>
         <input class="form-control" asp-for="Name" />
@@ -16,8 +18,8 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="Type"></label>
-        <select asp-for="Type" asp-items="Model.CheeseTypes"></select>
+        <label asp-for="CategoryID"></label>
+        <select asp-for="CategoryID" asp-items="Model.Categories"></select>
     </div>
 
     <input type="submit" value="Add Cheese" />
