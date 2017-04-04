@@ -78,7 +78,7 @@ namespace CheeseMVC.Controllers
             
             return Redirect("/");
         }
-
+        
         public IActionResult Category(int id)
         {
             if (id == 0)
