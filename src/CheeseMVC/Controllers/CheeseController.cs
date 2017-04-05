@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CheeseMVC.Models;
 using System.Collections.Generic;
 using CheeseMVC.ViewModels;
@@ -20,6 +20,7 @@ namespace CheeseMVC.Controllers
         public IActionResult Index()
         {
             List<Cheese> cheeses = context.Cheeses.ToList();
+
 
             return View(cheeses);
         }
@@ -71,6 +72,21 @@ namespace CheeseMVC.Controllers
             context.SaveChanges();
 
             return Redirect("/");
+       }
+    
+        public IActionResult Edit(int id)
+        {
+            ViewBag.title = "Edit Cheese";
+            ViewBag.cheese = CheeseData.GetById(id);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, string name, string description)
+        {
+            Cheese cheese = CheeseData.GetById(id);
+            cheese.Name = name;
+            cheese.Description = description;
+            return Redirect("/Cheese");
         }
     }
 }
