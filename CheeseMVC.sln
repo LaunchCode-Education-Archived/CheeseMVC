@@ -7,10 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E4540E26-414
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseMVC", "src\CheeseMVC\CheeseMVC.csproj", "{6AFD9555-CD44-4530-AEFF-15264D392DF0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CheeseMVC", "CheeseMVC", "{9CF52370-7E13-4B2F-95FE-3EA16A9B3A92}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backup", "src\CheeseMVC\backup\backup.csproj", "{D5B8D6FE-A74A-4F41-8C85-A515A6FA9EA7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
