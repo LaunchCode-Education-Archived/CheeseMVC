@@ -1,16 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E4540E26-4149-4E03-AA4B-FDC5D690A52F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA4CA32E-24E9-4F07-8EF1-67AEAC776897}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CheeseMVC", "src\CheeseMVC\CheeseMVC.xproj", "{6AFD9555-CD44-4530-AEFF-15264D392DF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseMVC", "src\CheeseMVC\CheeseMVC.csproj", "{6AFD9555-CD44-4530-AEFF-15264D392DF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
