@@ -38,23 +38,6 @@ namespace CheeseMVC.Controllers
             return Redirect("/");
         }
 
-        public IActionResult Remove()
-        {
-            ViewBag.cheeses = CheeseData.GetAll();
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Remove(int[] cheeses)
-        {
-            foreach (int cheeseId in cheeses)
-            {
-                CheeseData.Remove(cheeseId);
-            }
-
-            return Redirect("/");
-        }
-
         public IActionResult Detail(int id)
         {
             ViewBag.cheese = CheeseData.GetById(id);
