@@ -1,0 +1,15 @@
+﻿@model CheeseMVC.ViewModels.AddCategoryViewModel
+
+<h1>Add Cheese Category</h1>
+
+
+<form asp-controller="Category" asp-action="Add" method="POST">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <input type="submit" value="Add" />
+</form>
+
